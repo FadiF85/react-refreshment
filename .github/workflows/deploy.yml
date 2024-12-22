@@ -22,6 +22,7 @@ jobs:
           key: ${{ secrets.HOSTINGER_PRIVATE_KEY}}
           target: /public_html/react-one
           source: dist/*
+          debug: true
 
       - name: Clean Up and Finalize on Hostinger
         uses: appleboy/ssh-action@v0.1.1
