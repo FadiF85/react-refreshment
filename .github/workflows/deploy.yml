@@ -19,7 +19,7 @@ jobs:
           host: 46.202.183.38
           port: 65002
           username: u878508099
-          key: ${{ secrets.HOSTINGER_SSH_KEY }}
+          key: ${{ secrets.HOSTINGER_PRIVATE_KEY}}
           target: /public_html/react-one
           source: dist/*
 
@@ -29,7 +29,7 @@ jobs:
           host: 46.202.183.38
           port: 65002
           username: u878508099
-          key: ${{ secrets.HOSTINGER_SSH_KEY }}
+          key: ${{ secrets.HOSTINGER_PRIVATE_KEY }}
           script: |
             cd /public_html/react-one
             echo "Deployment complete."
