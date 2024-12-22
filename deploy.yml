@@ -1,0 +1,35 @@
+name: Deploy Prebuilt React App
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Deploy Prebuilt Static Files to Hostinger
+        uses: appleboy/scp-action@v0.2.1
+        with:
+          host: 46.202.183.38
+          port: 65002
+          username: u878508099
+          key: ${{ secrets.HOSTINGER_SSH_KEY }}
+          target: /home/react-one
+          source: dist/*
+
+      - name: Clean Up and Finalize on Hostinger
+        uses: appleboy/ssh-action@v0.1.1
+        with:
+          host: 46.202.183.38
+          port: 65002
+          username: u878508099
+          key: ${{ secrets.HOSTINGER_SSH_KEY }}
+          script: |
+            cd /home/react-one
+            echo "Deployment complete."
