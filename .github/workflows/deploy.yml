@@ -13,6 +13,14 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      - name: Save and Restrict Permissions on Private Key
+        run: |
+          echo "${{ secrets.HOSTINGER_PRIVATE_KEY }}" > private_key.pem
+          chmod 600 private_key.pem
+
+      - name: Test SSH Connection
+        run: ssh -i private_key.pem -p 65002 your-hostinger-username@46.202.183.38 echo "SSH connected successfully"
+
       - name: Debug Private Key
         run: |
           echo "${{ secrets.HOSTINGER_PRIVATE_KEY }}" > private_key.pem
