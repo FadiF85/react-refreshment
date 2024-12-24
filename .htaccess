@@ -1,0 +1,7 @@
+# Enable RewriteEngine
+RewriteEngine On
+
+# Redirect all requests to /dist/index.html
+RewriteCond %{REQUEST_URI} !^/dist/index\.html$
+RewriteCond %{REQUEST_URI} !^/dist/
+RewriteRule ^.*$ /dist/index.html [L]
